@@ -1,0 +1,20 @@
+using System;
+
+namespace oddEven
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите натуральное число");
+            int number = int.Parse(Console.ReadLine());
+            bool isTruth = false;
+            if (number % 10 == 6)
+                isTruth = true;
+            else
+                isTruth = false;
+            Console.WriteLine($"Условие: четность, последняя цифра 6. Выполнено? {isTruth}");
+            Console.Read();
+        }
+    }
+}
