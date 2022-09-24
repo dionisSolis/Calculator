@@ -1,19 +1,62 @@
 using System;
+using System.Data;
 
-namespace oddEven
+namespace Calculator
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите натуральное число");
-            int number = int.Parse(Console.ReadLine());
-            bool isTruth = false;
-            if (number % 10 == 6)
-                isTruth = true;
-            else
-                isTruth = false;
-            Console.WriteLine($"Условие: четность, последняя цифра 6. Выполнено? {isTruth}");
+            double digitFirst, digitSecond; 
+            double resultOfOperation = 0;
+            string arithmeticOperation;
+            string answerToContinue = "";
+
+            while (answerToContinue != "N")
+            {
+                Console.Clear();
+                Console.Write("Введите первое число: ");
+                digitFirst = double.Parse(Console.ReadLine());
+                Console.Write("Введите арифметическую операцию(+|-|*|/) ");
+                arithmeticOperation = Console.ReadLine();
+
+                while (arithmeticOperation != "+" && arithmeticOperation != "-" && arithmeticOperation != "*" && arithmeticOperation != "/")
+                {
+                    Console.Write("\nТакой операции не существует. Повторите ввод (+|-|*|/) ");
+                    arithmeticOperation = Console.ReadLine();
+                }
+
+                Console.Write("Введите второе число: ");
+                digitSecond = double.Parse(Console.ReadLine());
+
+                switch (arithmeticOperation)
+                {
+                    case "+":
+                        resultOfOperation = digitFirst + digitSecond;
+                        break;
+                    case "-":
+                        resultOfOperation = digitFirst - digitSecond;
+                        break;
+                    case "*":
+                        resultOfOperation = digitFirst * digitSecond;
+                        break;
+                    case "/":
+                        resultOfOperation = digitFirst / digitSecond;
+                        break;
+                }
+
+                Console.WriteLine($"\nРезультат операции: {resultOfOperation}");
+                Console.WriteLine("\nЖелаете продолжить? Y/N?");
+                answerToContinue = Console.ReadLine().ToUpper();
+
+                while (answerToContinue != "Y" && answerToContinue != "N")
+                {
+                    Console.WriteLine("Введите корректно Y(продолжить) или N(завершить)");
+                    answerToContinue = Console.ReadLine();
+                }
+            }
+
+            Console.WriteLine("До свидания!");
             Console.Read();
         }
     }
